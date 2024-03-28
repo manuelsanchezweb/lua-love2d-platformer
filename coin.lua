@@ -1,14 +1,16 @@
-Coin = {}
+local Player = require("player")
+local Coin = {
+    img = love.graphics.newImage("assets/coin-new.png"),
+}
 Coin.__index = Coin
-ActiveCoins = {}
+Coin.width = Coin.img:getWidth()
+Coin.height = Coin.img:getHeight()
+local ActiveCoins = {}
 
 function Coin.new(x, y)
     local instance = setmetatable({}, Coin) -- create a new instance of the Coin class
     instance.x = x
     instance.y = y
-    instance.img = love.graphics.newImage("assets/coin-new.png")
-    instance.width = instance.img:getWidth()
-    instance.height = instance.img:getHeight()
     instance.scaleX = 1
     instance.toBeRemoved = false
 
@@ -84,3 +86,5 @@ end
 
 function Coin.endContact(a, b, collision)
 end
+
+return Coin

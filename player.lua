@@ -1,8 +1,10 @@
-Player = {}
+local Player = {}
 
 function Player:load()
     self.x = 100
     self.y = 0
+    self.startX = self.x
+    self.startY = self.y
     self.width = 24
     self.height = 27
     self.xVel = 0
@@ -14,6 +16,17 @@ function Player:load()
     self.direction = "right"
     self.state = "idle"
     self.coins = 0
+    self.hearts = {
+        current = 3;
+        max = 3;
+    }
+
+    self.color ={
+        red = 1,
+        green = 1,
+        blue = 1,
+        speed = 3
+    }
 
     self.grounded = false
     self.hasDoubleJump = true
@@ -22,13 +35,16 @@ function Player:load()
     self.graceTime = 0
     self.graceDuration = 0.1
 
+    self.alive = true
+
     self:loadAssets()
 
     self.physics = {}
     self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
     self.physics.body:setFixedRotation(true) -- prevent player from rotating
     self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
-    self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape) -- attach shape to body
+    self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape) 
+    self.physics.body:setGravityScale(0) -- prevent player from falling
 
 end
 
@@ -37,6 +53,8 @@ function Player:incrementCoins()
 end
 
 function Player:update(dt)
+    self:unTint(dt)
+    self:respawn()
     self:setState()
     self:setDirection()
     self:animate(dt)
@@ -72,6 +90,30 @@ function Player:move(dt)
         self.xVel = math.max(self.xVel - self.acceleration * dt, -self.maxSpeed)
     else 
         self:applyFriction(dt)
+    end
+end
+
+function Player:takeDamage(amount)
+
+    self.hearts.current = self.hearts.current - amount
+    self:tintRed()
+    if self.hearts.current <= 0 then
+
+        self.hearts.current = 0
+        self:die()
+    end
+end
+
+function Player:die()
+    self.alive = false
+end
+
+
+function Player:respawn()
+    if not self.alive then
+        self.physics.body:setPosition(self.startX, self.startY)
+        self.alive = true
+        self.hearts.current = self.hearts.max
     end
 end
 
@@ -185,7 +227,21 @@ function Player:draw()
     local originX = self.animation.width / 2
     local originY = self.animation.height / 2
     
+    love.graphics.setColor(self.color.red, self.color.green, self.color.blue)
     love.graphics.draw(self.animation.draw, self.x, self.y, 0, scaleX, scaleY, originX, originY )
+    love.graphics.setColor(1, 1, 1, 1)
+end
+
+function Player:tintRed()
+    self.color.red = 1
+    self.color.green = 0
+    self.color.blue = 0
+end
+
+function Player:unTint(dt)
+    self.color.red = math.min(self.color.red + self.color.speed * dt, 1)
+    self.color.green = math.min(self.color.green + self.color.speed * dt, 1)
+    self.color.blue = math.min(self.color.blue + self.color.speed * dt, 1)
 end
 
 function Player:animate(dt)
@@ -225,3 +281,5 @@ function Player:setState()
         self.state = "air"
     end
 end
+
+return Player

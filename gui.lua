@@ -1,4 +1,5 @@
-GUI = {}
+local GUI = {}
+local Player = require("player")
 
 function GUI:load()
     self.coins = {}
@@ -7,7 +8,8 @@ function GUI:load()
     self.coins.height = self.coins.img:getHeight()
     self.coins.scale = 3
     self.coins.x = 50
-    self.coins.y = 50
+    self.coins.y = 100
+
     self.font = love.graphics.newFont("assets/bit.ttf", 36)
 
      -- Existing initialization
@@ -23,11 +25,21 @@ function GUI:load()
     }
     self.musicButton.width = self.musicButton.img:getWidth() * self.musicButton.scale
     self.musicButton.height = self.musicButton.img:getHeight() * self.musicButton.scale
+
+    self.hearts = {}
+    self.hearts.img = love.graphics.newImage("assets/heart.png")
+    self.hearts.width = self.hearts.img:getWidth()
+    self.hearts.height = self.hearts.img:getHeight()
+    self.hearts.x = 0
+    self.hearts.y = 50
+    self.hearts.scale = 3
+    self.hearts.spacing = self.hearts.width * self.hearts.scale + 10
 end
 
 function GUI:draw()
     self:drawCoins()
-    self:drawText()
+    self:drawCoinsText()
+    self:drawHearts()
 
     if self.musicButton.isMusicOn then
         love.graphics.draw(self.musicButton.img, self.musicButton.x, self.musicButton.y, 0, self.musicButton.scale, self.musicButton.scale)
@@ -41,24 +53,30 @@ function GUI:update(dt)
 end
 
 function GUI:drawCoins()
-    love.graphics.setColor(0, 0, 0, 0.5)
+    love.graphics.setColor(0,0,0,0.5)
+    love.graphics.draw(self.coins.img, self.coins.x + 2, self.coins.y + 2, 0, self.coins.scale, self.coins.scale)
+    love.graphics.setColor(1,1,1,1)
     love.graphics.draw(self.coins.img, self.coins.x, self.coins.y, 0, self.coins.scale, self.coins.scale)
-
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.draw(self.coins.img, self.coins.x, self.coins.y, 0, self.coins.scale, self.coins.scale)
-
 end
 
-function GUI:drawText()
+function GUI:drawCoinsText()
     love.graphics.setFont(self.font)
+    local x = self.coins.x + self.coins.width * self.coins.scale
+    local y = self.coins.y + self.coins.height / 2 * self.coins.scale - self.font:getHeight() / 2
+    love.graphics.setColor(0,0,0,0.5)
+    love.graphics.print(" : "..Player.coins, x + 1, y + 1)
+    love.graphics.setColor(1,1,1,1)
+    love.graphics.print(" : "..Player.coins, x, y)
+end
 
-    local x = self.coins.x + self.coins.width * self.coins.scale + 10
-    local y = self.coins.y + self.coins.height * self.coins.scale - self.font:getHeight()
-    love.graphics.setColor(0, 0, 0, 0.5)
-    love.graphics.print("x " .. Player.coins, x, y)
-
-    love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.print("x " .. Player.coins, x, y)
+function GUI:drawHearts()
+    for i = 1, Player.hearts.current do
+        local x = self.hearts.x + i * self.hearts.spacing
+        love.graphics.setColor(0,0,0,0.5)
+        love.graphics.draw(self.hearts.img, x + 1, self.hearts.y + 1, 0, self.hearts.scale, self.hearts.scale)
+        love.graphics.setColor(1,1,1,1)
+        love.graphics.draw(self.hearts.img, x, self.hearts.y, 0, self.hearts.scale, self.hearts.scale)
+    end
 end
 
 function GUI:mousePressed(x, y)
@@ -71,3 +89,5 @@ function GUI:mousePressed(x, y)
         end
     end
 end
+
+return GUI
