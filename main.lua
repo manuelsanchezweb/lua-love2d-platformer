@@ -4,9 +4,10 @@ require("player")
 function love.load()
     Map = STI("map/first.lua", {"box2d"})
     World = love.physics.newWorld(0, 0)
+    World:setCallbacks(beginContact, endContact) -- set up collision callbacks
     Map:box2d_init(World)
     Map.layers.solid.visible = false
-    background = love.graphics.newImage("assets/background.png")
+    background = love.graphics.newImage("assets/background-forest.png")
     Player:load()
 end
 
@@ -23,3 +24,16 @@ function love.draw()
     Player:draw()
     love.graphics.pop() -- pop the transformation matrix from the stack
 end
+
+function love.keypressed(key)
+    Player:jump(key)
+end
+
+function beginContact(a, b, collision) 
+    -- a and b are the colliding fixtures, collision is the Contact object
+    Player:beginContact(a, b, collision)
+end
+
+function endContact(a, b, collision)
+    Player:endContact(a, b, collision)
+end 

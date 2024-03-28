@@ -12,6 +12,9 @@ function Player:load()
     self.friction = 3500 -- it will take 0.057 seconds to stop from max speed - 200 / 3500 = 0.057
     self.gravity = 1500 -- 1500 pixels per second squared
 
+    self.grounded = false
+    self.jumpAmount = -700
+
     self.physics = {}
     self.physics.body = love.physics.newBody(World, self.x, self.y, "dynamic")
     self.physics.body:setFixedRotation(true) -- prevent player from rotating
@@ -23,6 +26,13 @@ end
 function Player:update(dt)
     self:syncPhysics()
     self:move(dt)
+    self:applyGravity(dt)
+end
+
+function Player:applyGravity(dt)
+    if not self.grounded then
+        self.yVel = self.yVel + self.gravity * dt
+    end 
 end
 
 function Player:applyFriction(dt)
@@ -70,4 +80,42 @@ end
 
 function Player:draw()
     love.graphics.rectangle("fill", self.x - self.width / 2, self.y - self.height / 2, self.width, self.height)
+end
+
+function Player:beginContact(a, b, collision)
+    if (self.grounded) then return end
+    local nx, ny = collision:getNormal() -- returns coordinates of the collision normal
+
+    if a == self.physics.fixture then
+        if ny > 0 then
+            self:land(collision)
+        end
+    elseif b == self.physics.fixture then
+        if ny < 0 then
+            self:land(collision)
+        end
+    end
+end
+
+function Player:endContact(a, b, collision)
+    if a == self.physics.fixture or b == self.physics.fixture then
+        if(self.currentGroundCollision == collision) then
+            self.grounded = false
+        end
+    end
+end
+
+function Player:land(collision)
+    self.currentGroundCollision = collision
+    self.yVel = 0
+    self.grounded = true
+end
+
+function Player:jump(key)
+    if key == "up" or key == "w" and self.grounded then
+      
+            self.yVel = self.jumpAmount
+            self.grounded = false
+
+    end
 end
