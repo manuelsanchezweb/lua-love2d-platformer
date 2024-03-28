@@ -1,5 +1,6 @@
 local STI = require("sti")
 require("player")
+love.graphics.setDefaultFilter("nearest", "nearest")
 
 function love.load()
     Map = STI("map/first.lua", {"box2d"})
