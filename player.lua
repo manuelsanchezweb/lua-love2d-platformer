@@ -13,6 +13,7 @@ function Player:load()
     self.gravity = 1500 -- 1500 pixels per second squared
     self.direction = "right"
     self.state = "idle"
+    self.coins = 0
 
     self.grounded = false
     self.hasDoubleJump = true
@@ -29,6 +30,10 @@ function Player:load()
     self.physics.shape = love.physics.newRectangleShape(self.width, self.height)
     self.physics.fixture = love.physics.newFixture(self.physics.body, self.physics.shape) -- attach shape to body
 
+end
+
+function Player:incrementCoins()
+    self.coins = self.coins + 1
 end
 
 function Player:update(dt)
@@ -111,9 +116,11 @@ function Player:jump(key)
             self.yVel = self.jumpAmount
             self.grounded = false
             self.graceTime = 0
+            SFX:playJump()  -- Play jump sound
         elseif self.hasDoubleJump then
             self.yVel = self.jumpAmount * 0.75
             self.hasDoubleJump = false
+            SFX:playJump()  -- Play jump sound
         end
     end
 end
@@ -137,7 +144,6 @@ function Player:loadAssets()
     }
 
     for i=1, self.animation.run.total do
-        print(i)
         self.animation.run.img[i] = love.graphics.newImage("assets/player/run/walk"..i..".png")
     end
 
@@ -148,7 +154,6 @@ function Player:loadAssets()
     }
 
     for i=1, self.animation.air.total do
-        print(i)
         self.animation.air.img[i] = love.graphics.newImage("assets/player/idle/idle"..i..".png")
     end
 
@@ -159,7 +164,6 @@ function Player:loadAssets()
     }
 
     for i=1, self.animation.idle.total do
-        print(i)
         self.animation.idle.img[i] = love.graphics.newImage("assets/player/idle/idle"..i..".png")
     end
 
