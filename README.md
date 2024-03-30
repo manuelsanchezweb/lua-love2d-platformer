@@ -13,8 +13,9 @@
 - ⚛️ Physics (Gravity, acceleration, mass) thanks to Box2D and Love2D
 - 💕 Health system (3 lives max)
 - 👾 Simple Enemy
+- 🎵 SFX and background music
 - 🏞️ Setup handling using Tiled (solid objects, coins, spikes and enemies)
-- 🏞️ Change levels
+- 🔝 Change levels
 
  <img src="./screen-top.png" alt="Logo" width="800" />
 

@@ -22,8 +22,8 @@ function love.load()
     GUI:load()
     SFX:load()
 
-    -- SFX:loadBackgroundMusic("assets/sfx/life-full-of-joy.wav")  -- Replace with your actual music file path
-    -- SFX:playBackgroundMusic()
+    SFX:loadBackgroundMusic("assets/sfx/life-full-of-joy.wav")  -- Replace with your actual music file path
+    SFX:playBackgroundMusic()
 end
 
 function love.update(dt)
