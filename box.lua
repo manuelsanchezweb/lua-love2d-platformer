@@ -1,13 +1,13 @@
-local Stone = {
-    img = love.graphics.newImage("assets/stone.png")
+local Box = {
+    img = love.graphics.newImage("assets/box.png")
 }
-Stone.__index = Stone
-Stone.width = Stone.img:getWidth()
-Stone.height = Stone.img:getHeight()
-local ActiveStones = {}
+Box.__index = Box
+Box.width = Box.img:getWidth()
+Box.height = Box.img:getHeight()
+local ActiveBoxs = {}
 
-function Stone.new(x, y)
-    local instance = setmetatable({}, Stone) -- create a new instance of the Stone class
+function Box.new(x, y)
+    local instance = setmetatable({}, Box) -- create a new instance of the Box class
     instance.x = x
     instance.y = y
     instance.rotation = 0
@@ -23,35 +23,35 @@ function Stone.new(x, y)
 
     instance.randomTimeOffset = math.random(0, 100)
 
-    table.insert(ActiveStones, instance)
+    table.insert(ActiveBoxs, instance)
 end
 
-function Stone:syncPhysics()
+function Box:syncPhysics()
     self.x, self.y = self.physics.body:getPosition()
     self.rotation = self.physics.body:getAngle()
 end
 
-function Stone:update(dt)
+function Box:update(dt)
     self:syncPhysics()
    
 end
 
 
-function Stone:draw()
+function Box:draw()
     love.graphics.draw(self.img, self.x, self.y, 0, self.scaleX, 1 , self.width/2, self.height/2)
     -- love.graphics.draw(self.img, self.x, self.y, self.rotation, self.scaleX, 1 , self.width/2, self.height/2) -- shows rotation
 end
 
-function Stone:drawAll()
-    for i, instance in ipairs(ActiveStones) do
+function Box:drawAll()
+    for i, instance in ipairs(ActiveBoxs) do
         instance:draw()
     end
 end
 
-function Stone:updateAll(dt)
-    for i, instance in ipairs(ActiveStones) do
+function Box:updateAll(dt)
+    for i, instance in ipairs(ActiveBoxs) do
         instance:update(dt)
     end
 end
 
-return Stone
+return Box

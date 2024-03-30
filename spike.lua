@@ -1,16 +1,16 @@
 local Player = require("player")
 local Spike = {
-    img = love.graphics.newImage("assets/spike.png")
+    img = love.graphics.newImage("assets/spikes.png")
 }
 Spike.__index = Spike
 Spike.width = Spike.img:getWidth()
-Spike.height = Spike.img:getHeight()
+Spike.height = Spike.img:getHeight() 
 local ActiveSpikes = {}
 
 function Spike.new(x, y)
     local instance = setmetatable({}, Spike) -- create a new instance of the Spike class
     instance.x = x
-    instance.y = y
+    instance.y = y + instance.height
 
     instance.damage = 1
 
@@ -39,7 +39,7 @@ end
 
 
 function Spike:draw()
-    love.graphics.draw(self.img, self.x, self.y, 0, self.scaleX, 1 , self.width/2, self.height/2)
+    love.graphics.draw(self.img, self.x, self.y, 0, self.scaleX, 1 , self.width/2, self.height)
 end
 
 function Spike:drawAll()

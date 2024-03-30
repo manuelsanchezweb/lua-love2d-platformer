@@ -4,7 +4,7 @@ local GUI = require("gui")
 local Coin = require("coin")
 local Spike = require("spike")
 local Camera = require("camera")
-local Stone = require("stone")
+local Box = require("box")
 -- way of using locals above - better for performance, keeps the code clean and organized, and avoids global variables
 -- for the moment, GUI is only used in main.lua, so it's not necessary to make it global
 local Player = require("player")
@@ -22,13 +22,15 @@ function love.load()
     Player:load()
     GUI:load()
     SFX:load()
-    -- SFX:loadBackgroundMusic("assets/sfx/life-full-of-joy.wav")  -- Replace with your actual music file path
-    -- SFX:playBackgroundMusic()
+    SFX:loadBackgroundMusic("assets/sfx/life-full-of-joy.wav")  -- Replace with your actual music file path
+    SFX:playBackgroundMusic()
     Coin.new(200, 300)
     Coin.new(400, 200)
     Coin.new(500, 200)
-    Spike.new(300, 310)
-    Stone.new(400, 250)
+    Coin.new(600, 200)
+    Spike.new(240, 209)
+    Spike.new(400, 320)
+    Box.new(400, 250)
 end
 
 function love.update(dt)
@@ -36,7 +38,7 @@ function love.update(dt)
     Player:update(dt)
     Coin:updateAll(dt)
     Spike:updateAll(dt)
-    Stone:updateAll(dt)
+    Box:updateAll(dt)
     GUI:update(dt)
 	Camera:setPosition(Player.x, 0)
 end
@@ -49,7 +51,7 @@ function love.draw()
     Player:draw()
     Coin:drawAll()
     Spike:drawAll()
-    Stone:drawAll()
+    Box:drawAll()
     Camera:clear()
      
     GUI:draw() -- draw the GUI on top of everything else / static / camera will not affect it
