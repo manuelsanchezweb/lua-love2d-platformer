@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="23" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="78">
+ <editorsettings>
+  <export target="../level-2.lua" format="lua"/>
+ </editorsettings>
+ <tileset firstgid="1" name="tiles" tilewidth="16" tileheight="16" tilecount="56" columns="14">
+  <image source="../../assets/tiles.png" width="224" height="64"/>
+ </tileset>
+ <tileset firstgid="57" name="tile-manuel" tilewidth="32" tileheight="32" tilecount="49" columns="7">
+  <image source="../../assets/tileset-platformer32x32.png" width="224" height="224"/>
+ </tileset>
+ <layer id="1" name="ground" width="40" height="23" offsetx="0.212121" offsety="-0.166667">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,33,33,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,99,0,101,0,101,101,101,101,101,101,101,101,101,101,101,0,103,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,34,33,0,0,0,0,0,0,0,0,0,0,0,
+57,0,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,59,0,59,59,59,59,59,59,0,61,0
+</data>
+ </layer>
+ <objectgroup color="#ff40ff" id="4" name="entity" tintcolor="#0433ff">
+  <object id="42" name="Coin" type="coin" x="176" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="43" name="Coin" type="coin" x="224.152" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="44" name="Coin" type="coin" x="191.879" y="175.879">
+   <ellipse/>
+  </object>
+  <object id="45" name="Coin" type="coin" x="192.061" y="160.545">
+   <ellipse/>
+  </object>
+  <object id="46" name="Coin" type="coin" x="208.333" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="47" name="Coin" type="coin" x="192" y="192.333">
+   <ellipse/>
+  </object>
+  <object id="48" name="Coin" type="coin" x="192.333" y="208.333">
+   <ellipse/>
+  </object>
+  <object id="49" name="Coin" type="coin" x="192.333" y="224">
+   <ellipse/>
+  </object>
+  <object id="50" name="Coin" type="coin" x="160" y="160">
+   <ellipse/>
+  </object>
+  <object id="51" name="Coin" type="coin" x="352" y="160.667">
+   <ellipse/>
+  </object>
+  <object id="52" name="Coin" type="coin" x="368.667" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="53" name="Coin" type="coin" x="384.333" y="160">
+   <ellipse/>
+  </object>
+  <object id="54" name="Coin" type="coin" x="400.333" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="55" name="Coin" type="coin" x="416.333" y="176">
+   <ellipse/>
+  </object>
+  <object id="56" name="Coin" type="coin" x="416.091" y="192.03">
+   <ellipse/>
+  </object>
+  <object id="57" name="Coin" type="coin" x="400.208" y="208.167">
+   <ellipse/>
+  </object>
+  <object id="58" name="Coin" type="coin" x="384.333" y="208.667">
+   <ellipse/>
+  </object>
+  <object id="59" name="Coin" type="coin" x="368" y="208.667">
+   <ellipse/>
+  </object>
+  <object id="60" name="Coin" type="coin" x="352.333" y="224.667">
+   <ellipse/>
+  </object>
+  <object id="61" name="Coin" type="coin" x="352" y="176.667">
+   <ellipse/>
+  </object>
+  <object id="62" name="Coin" type="coin" x="352.333" y="192.333">
+   <ellipse/>
+  </object>
+  <object id="63" name="Coin" type="coin" x="352.333" y="208">
+   <ellipse/>
+  </object>
+  <object id="64" name="Coin" type="coin" x="352" y="240.667">
+   <ellipse/>
+  </object>
+  <object id="65" name="Coin" type="coin" x="192" y="240">
+   <ellipse/>
+  </object>
+  <object id="66" name="Coin" type="coin" x="288.333" y="160.333">
+   <ellipse/>
+  </object>
+  <object id="67" name="Coin" type="coin" x="272" y="176">
+   <ellipse/>
+  </object>
+  <object id="68" name="Coin" type="coin" x="257" y="192.333">
+   <ellipse/>
+  </object>
+  <object id="69" name="Coin" type="coin" x="271.667" y="224">
+   <ellipse/>
+  </object>
+  <object id="70" name="Coin" type="coin" x="256" y="208.667">
+   <ellipse/>
+  </object>
+  <object id="71" name="Coin" type="coin" x="288.333" y="240.333">
+   <ellipse/>
+  </object>
+  <object id="72" name="Coin" type="coin" x="304" y="224.333">
+   <ellipse/>
+  </object>
+  <object id="73" name="Coin" type="coin" x="304" y="176">
+   <ellipse/>
+  </object>
+  <object id="74" name="Coin" type="coin" x="320.333" y="191.667">
+   <ellipse/>
+  </object>
+  <object id="75" name="Coin" type="coin" x="320.5" y="208.167">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ff2600" id="3" name="solid">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <object id="2" x="128.328" y="255.977" width="287.375" height="31.5">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="38" x="-6.35415" y="0.75" width="7.7083" height="367.5">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="76" x="1.64583" y="336.917" width="641.542" height="31.5">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="77" x="635.896" y="-1.25" width="7.7083" height="367.5">
+   <properties>
+    <property name="collidable" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

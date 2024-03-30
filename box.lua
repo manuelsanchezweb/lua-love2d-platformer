@@ -4,7 +4,7 @@ local Box = {
 Box.__index = Box
 Box.width = Box.img:getWidth()
 Box.height = Box.img:getHeight()
-local ActiveBoxs = {}
+local ActiveBoxes = {}
 
 function Box.new(x, y)
     local instance = setmetatable({}, Box) -- create a new instance of the Box class
@@ -23,7 +23,7 @@ function Box.new(x, y)
 
     instance.randomTimeOffset = math.random(0, 100)
 
-    table.insert(ActiveBoxs, instance)
+    table.insert(ActiveBoxes, instance)
 end
 
 function Box:syncPhysics()
@@ -43,15 +43,24 @@ function Box:draw()
 end
 
 function Box:drawAll()
-    for i, instance in ipairs(ActiveBoxs) do
+    for i, instance in ipairs(ActiveBoxes) do
         instance:draw()
     end
 end
 
 function Box:updateAll(dt)
-    for i, instance in ipairs(ActiveBoxs) do
+    for i, instance in ipairs(ActiveBoxes) do
         instance:update(dt)
     end
 end
+
+function Box.removeAll()
+    for i,v in ipairs(ActiveBoxes) do
+       v.physics.body:destroy()
+    end
+ 
+    ActiveBoxes = {}
+ end
+ 
 
 return Box

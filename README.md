@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://github.com/manuelsanchezweb/lua-love2d-platformer">
-  <img width="500px" src="./screen-final.png" alt="Logo" width="800" />
+  <img src="./screen-final.png" alt="Logo" width="800" />
 </a>
 
 # LUA and Love2D: First Steps for a Platformer 2D
@@ -14,6 +14,9 @@
 - 💕 Health system (3 lives max)
 - 👾 Simple Enemy
 - 🏞️ Setup handling using Tiled (solid objects, coins, spikes and enemies)
+- 🏞️ Change levels
+
+ <img src="./screen-top.png" alt="Logo" width="800" />
 
 ## 🔧 Setup
 

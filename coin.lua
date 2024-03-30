@@ -37,6 +37,13 @@ function Coin:remove()
     end
 end
 
+function Coin.removeAll()
+    for i, instance in ipairs(ActiveCoins) do
+        instance.physics.body:destroy()
+    end
+    ActiveCoins = {}
+end
+
 function Coin:checkRemove()
     if self.toBeRemoved then
         self:remove()

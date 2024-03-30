@@ -147,6 +147,14 @@ function Enemy:updateAll(dt)
     end
 end
 
+function Enemy.removeAll()
+    for i,v in ipairs(ActiveEnemies) do
+       v.physics.body:destroy()
+    end
+ 
+    ActiveEnemies = {}
+ end
+
 function Enemy.beginContact(a, b, collision)
 
     for i, instance in ipairs(ActiveEnemies) do

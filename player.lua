@@ -111,11 +111,15 @@ end
 
 function Player:respawn()
     if not self.alive then
-        self.physics.body:setPosition(self.startX, self.startY)
-        self.alive = true
-        self.hearts.current = self.hearts.max
+       self:resetPosition()
+       self.health.current = self.health.max
+       self.alive = true
     end
-end
+ end
+ 
+ function Player:resetPosition()
+    self.physics.body:setPosition(self.startX, self.startY)
+ end
 
 function Player:beginContact(a, b, collision)
     if (self.grounded) then return end

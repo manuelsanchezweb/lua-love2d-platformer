@@ -54,6 +54,14 @@ function Spike:updateAll(dt)
     end
 end
 
+function Spike.removeAll()
+    for i,v in ipairs(ActiveSpikes) do
+       v.physics.body:destroy()
+    end
+ 
+    ActiveSpikes = {}
+ end
+
 function Spike.beginContact(a, b, collision)
     for i, instance in ipairs(ActiveSpikes) do
         if a == instance.physics.fixture or b == instance.physics.fixture then
@@ -64,5 +72,7 @@ function Spike.beginContact(a, b, collision)
         end
     end
 end
+
+
 
 return Spike

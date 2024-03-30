@@ -1,11 +1,12 @@
 love.graphics.setDefaultFilter("nearest", "nearest")
-local STI = require("sti")
+
 local GUI = require("gui") 
 local Coin = require("coin")
 local Spike = require("spike")
-local Camera = require("camera")
 local Box = require("box")
 local Enemy = require("enemy")
+local Camera = require("camera")
+local Map = require("map")
 -- way of using locals above - better for performance, keeps the code clean and organized, and avoids global variables
 -- for the moment, GUI is only used in main.lua, so it's not necessary to make it global
 local Player = require("player")
@@ -14,20 +15,15 @@ require("sfx")
 
 function love.load()
     Enemy.loadAssets()
-    Map = STI("map/first.lua", {"box2d"})
-    World = love.physics.newWorld(0, 2000) -- create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 2000
-    World:setCallbacks(beginContact, endContact) -- set up collision callbacks
-    Map:box2d_init(World)
-    Map.layers.solid.visible = false
-    Map.layers.entity.visible = false
-    MapWidth = Map.layers.ground.width * 16
+    Map:load()
+  
     background = love.graphics.newImage("assets/background-forest.png")
     Player:load()
     GUI:load()
     SFX:load()
+
     -- SFX:loadBackgroundMusic("assets/sfx/life-full-of-joy.wav")  -- Replace with your actual music file path
     -- SFX:playBackgroundMusic()
-    spawnEntities()
 end
 
 function love.update(dt)
@@ -39,11 +35,12 @@ function love.update(dt)
     Box:updateAll(dt)
     GUI:update(dt)
 	Camera:setPosition(Player.x, 0)
+    Map:update()
 end
 
 function love.draw()
     love.graphics.draw(background, 0, 0)
-    Map:draw(-Camera.x, -Camera.y, Camera.scale, Camera.scale)
+    Map.level:draw(-Camera.x, -Camera.y, Camera.scale, Camera.scale)
 
     -- debugSolidOutlines() 
 
@@ -84,19 +81,6 @@ function endContact(a, b, collision)
 end 
 
 
-function spawnEntities()
-	for i,v in ipairs(Map.layers.entity.objects) do
-		if v.type == "spikes" then
-			Spike.new(v.x + v.width / 2, v.y)
-		elseif v.type == "box" then
-			Box.new(v.x + v.width / 2, v.y + v.height / 2)
-		elseif v.type == "enemy" then
-			Enemy.new(v.x + v.width / 2, v.y + v.height / 2)
-		elseif v.type == "coin" then
-			Coin.new(v.x, v.y)
-		end
-	end
-end
 
 function debugSolidOutlines()
     for _, object in ipairs(Map.layers.solid.objects) do
