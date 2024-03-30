@@ -6,7 +6,7 @@ function Player:load()
     self.startX = self.x
     self.startY = self.y
     self.width = 24
-    self.height = 27
+    self.height = 30
     self.xVel = 0
     self.yVel = 100
     self.maxSpeed = 200

@@ -49,7 +49,7 @@ function Coin:update(dt)
     --         table.remove(ActiveCoins, i)
     --     end
     -- end
-    self:spin(dt)
+    -- self:spin(dt)
     self:checkRemove()
 end
 
