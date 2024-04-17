@@ -22,10 +22,10 @@ function Player:load()
     }
 
     self.color ={
-        red = 1,
-        green = 1,
-        blue = 1,
-        speed = 3
+        red = 255,
+        green = 255,
+        blue = 255,
+        speed = 300 -- this is for love2d 10, for 11.5 we use 3 and that is all
     }
 
     self.grounded = false
@@ -112,7 +112,7 @@ end
 function Player:respawn()
     if not self.alive then
        self:resetPosition()
-       self.health.current = self.health.max
+       self.hearts.current = self.hearts.max
        self.alive = true
     end
  end
@@ -233,19 +233,19 @@ function Player:draw()
     
     love.graphics.setColor(self.color.red, self.color.green, self.color.blue)
     love.graphics.draw(self.animation.draw, self.x, self.y, 0, scaleX, scaleY, originX, originY )
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(255, 255, 255, 255)
 end
 
 function Player:tintRed()
-    self.color.red = 1
+    self.color.red = 255
     self.color.green = 0
     self.color.blue = 0
 end
 
 function Player:unTint(dt)
-    self.color.red = math.min(self.color.red + self.color.speed * dt, 1)
-    self.color.green = math.min(self.color.green + self.color.speed * dt, 1)
-    self.color.blue = math.min(self.color.blue + self.color.speed * dt, 1)
+    self.color.red = math.min(self.color.red + self.color.speed * dt, 255)
+    self.color.green = math.min(self.color.green + self.color.speed * dt, 255)
+    self.color.blue = math.min(self.color.blue + self.color.speed * dt, 255)
 end
 
 function Player:animate(dt)

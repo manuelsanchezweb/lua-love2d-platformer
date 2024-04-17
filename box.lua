@@ -19,7 +19,7 @@ function Box.new(x, y)
     instance.physics.body = love.physics.newBody(World, instance.x, instance.y, "dynamic")
     instance.physics.shape = love.physics.newRectangleShape(instance.width, instance.height)
     instance.physics.fixture = love.physics.newFixture(instance.physics.body, instance.physics.shape)
-    instance.physics.body:setMass(60)
+    instance.physics.body:setMass(20)
 
     instance.randomTimeOffset = math.random(0, 100)
 

@@ -16,7 +16,8 @@ function GUI:load()
     self.musicButton = {
         img = love.graphics.newImage("assets/sound-off.png"),  -- Assuming you have a 'sound-off' sprite
         imgOn = love.graphics.newImage("assets/sound-on.png"),  -- Assuming you have a 'sound-on' sprite
-        x = love.graphics.getWidth() - 100,  -- Positioning the button on the top-right
+        -- x = love.graphics.getWidth() - 100,  It was not working in Love 10 -- Positioning the button on the top-right
+        x = 1180,
         y = 50,
         scale = 3,
         width = nil,
@@ -34,6 +35,7 @@ function GUI:load()
     self.hearts.y = 50
     self.hearts.scale = 3
     self.hearts.spacing = self.hearts.width * self.hearts.scale + 10
+
 end
 
 function GUI:draw()
@@ -42,9 +44,9 @@ function GUI:draw()
     self:drawHearts()
 
     if self.musicButton.isMusicOn then
-        love.graphics.draw(self.musicButton.img, self.musicButton.x, self.musicButton.y, 0, self.musicButton.scale, self.musicButton.scale)
-    else
         love.graphics.draw(self.musicButton.imgOn, self.musicButton.x, self.musicButton.y, 0, self.musicButton.scale, self.musicButton.scale)
+    else
+        love.graphics.draw(self.musicButton.img, self.musicButton.x, self.musicButton.y, 0, self.musicButton.scale, self.musicButton.scale)
     end
 end
 
@@ -53,9 +55,9 @@ function GUI:update(dt)
 end
 
 function GUI:drawCoins()
-    love.graphics.setColor(0,0,0,0.5)
+    love.graphics.setColor(0, 0, 0, 127)
     love.graphics.draw(self.coins.img, self.coins.x + 2, self.coins.y + 2, 0, self.coins.scale, self.coins.scale)
-    love.graphics.setColor(1,1,1,1)
+    love.graphics.setColor(255, 255, 255, 255)
     love.graphics.draw(self.coins.img, self.coins.x, self.coins.y, 0, self.coins.scale, self.coins.scale)
 end
 
@@ -63,18 +65,18 @@ function GUI:drawCoinsText()
     love.graphics.setFont(self.font)
     local x = self.coins.x + self.coins.width * self.coins.scale
     local y = self.coins.y + self.coins.height / 2 * self.coins.scale - self.font:getHeight() / 2
-    love.graphics.setColor(0,0,0,0.5)
+    love.graphics.setColor(0, 0, 0, 127)
     love.graphics.print(" : "..Player.coins, x + 1, y + 1)
-    love.graphics.setColor(1,1,1,1)
+    love.graphics.setColor(255, 255, 255, 255)
     love.graphics.print(" : "..Player.coins, x, y)
 end
 
 function GUI:drawHearts()
     for i = 1, Player.hearts.current do
         local x = self.hearts.x + i * self.hearts.spacing
-        love.graphics.setColor(0,0,0,0.5)
+        love.graphics.setColor(0, 0, 0, 127)
         love.graphics.draw(self.hearts.img, x + 1, self.hearts.y + 1, 0, self.hearts.scale, self.hearts.scale)
-        love.graphics.setColor(1,1,1,1)
+        love.graphics.setColor(255, 255, 255, 255)
         love.graphics.draw(self.hearts.img, x, self.hearts.y, 0, self.hearts.scale, self.hearts.scale)
     end
 end

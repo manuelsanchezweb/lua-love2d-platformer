@@ -84,7 +84,7 @@ end
 
 function debugSolidOutlines()
     for _, object in ipairs(Map.layers.solid.objects) do
-        love.graphics.setColor(1, 0, 0, 1) -- Set the color to red for the outline
+        love.graphics.setColor(255, 0, 0, 255) -- Set the color to red for the outline
 
         -- Adjust coordinates and size for camera position and scale
         local drawX = (object.x - Camera.x) * Camera.scale
@@ -111,6 +111,6 @@ function debugSolidOutlines()
             love.graphics.ellipse("line", drawX + radiusX, drawY + radiusY, radiusX, radiusY)
         end
 
-        love.graphics.setColor(1, 1, 1, 1) -- Reset the color to white
+        love.graphics.setColor(255, 255, 255, 255) -- Reset the color to white
     end
 end

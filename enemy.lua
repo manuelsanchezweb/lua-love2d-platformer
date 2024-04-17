@@ -130,9 +130,9 @@ function Enemy:draw()
 end
 
 function Enemy:drawDebugOutline()
-    love.graphics.setColor(1, 0, 0, 1)
+    love.graphics.setColor(255, 0, 0, 255)
     love.graphics.polygon("line", self.physics.body:getWorldPoints(self.physics.shape:getPoints()))
-    love.graphics.setColor(1, 1, 1, 1)
+    love.graphics.setColor(255, 255, 255, 255)
 end
 
 function Enemy:drawAll()
